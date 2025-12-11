@@ -3,6 +3,47 @@ import { Sun, Moon, Github, Linkedin, Mail, Code, User, Send, ExternalLink } fro
 
 // --- Interfaces & Datos (TypeScript) ---
 
+import { 
+  SiReact, SiTypescript, SiTailwindcss, SiHtml5, SiCss3, SiJavascript, SiVite,
+  SiNodedotjs, SiExpress, SiPostgresql, SiMongodb, SiJsonwebtokens, SiJira,
+  SiGithub, SiPostman, SiDocker
+} from 'react-icons/si';
+
+// Definimos la estructura de una Skill
+interface Skill {
+  name: string;
+  icon: React.ReactNode;
+  color: string; // Color hexadecimal oficial para el icono
+}
+
+type SkillCategory = 'frontend' | 'backend' | 'tools';
+
+// Los datos actualizados con iconos y colores
+const skillsData: Record<SkillCategory, Skill[]> = {
+  frontend: [
+    { name: "React", icon: <SiReact />, color: "#61DAFB" },
+    { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
+    { name: "Tailwind", icon: <SiTailwindcss />, color: "#06B6D4" },
+    { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26" },
+    { name: "CSS3", icon: <SiCss3 />, color: "#1572B6" },
+    { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+    { name: "Vite", icon: <SiVite />, color: "#646CFF" },
+  ],
+  backend: [
+    { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
+    { name: "Express", icon: <SiExpress />, color: "#000000" }, // Express es blanco/negro
+    { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1" },
+    { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
+    { name: "JWT Auth", icon: <SiJsonwebtokens />, color: "#D63AFF" },
+  ],
+  tools: [
+    { name: "GitHub", icon: <SiGithub />, color: "#181717" },
+    { name: "Postman", icon: <SiPostman />, color: "#FF6C37" },
+    { name: "Docker", icon: <SiDocker />, color: "#2496ED" },
+    { name: "Jira", icon: <SiJira />, color: "#0052CC" },
+  ]
+};
+
 interface Project {
   id: number;
   title: string;
@@ -11,6 +52,8 @@ interface Project {
   repoLink: string;
   demoLink: string;
 }
+
+
 
 const projectsData: Project[] = [
   {
@@ -46,6 +89,7 @@ type Theme = 'light' | 'dark';
 const App: React.FC = () => {
   // Estado del tema
   const [theme, setTheme] = useState<Theme>('dark');
+  const [activeTab, setActiveTab] = useState<SkillCategory>('frontend');
 
   // Efecto para aplicar la clase 'dark' al HTML
   useEffect(() => {
@@ -66,7 +110,7 @@ const App: React.FC = () => {
     <nav className="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 font-mono tracking-tight">
-          &lt;Dev /&gt;
+          &lt;Andy Garcia/&gt;
         </h1>
         
         <div className="flex items-center gap-6">
@@ -101,33 +145,80 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300 font-sans text-slate-900 dark:text-slate-100 selection:bg-blue-500/30">
       <Navbar />
 
-      {/* SECCIÓN: INICIO */}
-      <section id="inicio" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-        {/* Decoración de fondo */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10" />
-        
-        <div className="text-center px-4 max-w-4xl mx-auto z-10">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold tracking-wide mb-6 border border-blue-200 dark:border-blue-800/50">
-            Full Stack Developer
-          </span>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-slate-900 dark:text-white">
-            Creando soluciones <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-              digitales modernas
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Especializado en transformar ideas complejas en código limpio, escalable y eficiente.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#proyectos" className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-0.5">
-              Ver Proyectos
-            </a>
-            <a href="#contacto" className="px-8 py-3.5 bg-white dark:bg-transparent border border-slate-300 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 text-slate-700 dark:text-slate-300 rounded-full font-semibold transition-all hover:bg-slate-50 dark:hover:bg-slate-800">
-              Contactar
-            </a>
+      {/* SECCIÓN: INICIO (Rediseñada) */}
+      <section id="inicio" className="min-h-screen flex items-center pt-20 pb-10 relative overflow-hidden">
+        {/* Fondos decorativos sutiles (Glow azul) */}
+        <div className="absolute top-0 right-0 w-1/2 h-screen bg-blue-500/10 rounded-bl-[100px] -z-10 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full -z-10 blur-3xl"></div>
+
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* COLUMNA IZQUIERDA: Textos */}
+          <div className="space-y-6 text-center md:text-left">
+            
+            {/* Badge de bienvenida (Azul) */}
+            <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold mb-2 border border-blue-200 dark:border-blue-800">
+              ¡Bienvenidos a mi Portafolio!
+            </div>
+            
+            <div className="space-y-2">
+              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Andy Garcia
+              </h1>
+              <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">
+                Desarrollador Full Stack
+              </h2>
+            </div>
+
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0 leading-relaxed">
+              Programando y experimentando desde Bahía Blanca, Argentina. Especializado en aplicaciones web funcionales y escalables.
+            </p>
+
+            {/* Botones */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+              <a href="#contacto" className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1">
+                Contactame <Send size={18} />
+              </a>
+              <a href="#proyectos" className="inline-flex items-center gap-2 px-8 py-3 bg-transparent border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-full font-bold transition-all">
+                Ver proyectos <ExternalLink size={18} />
+              </a>
+            </div>
+
+            {/* Redes Sociales (Íconos simples) */}
+            <div className="flex justify-center md:justify-start gap-6 pt-4">
+              <a href="#" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+                <Github size={28} />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+                <Linkedin size={28} />
+              </a>
+            </div>
           </div>
+
+          {/* COLUMNA DERECHA: La Tarjeta con Foto */}
+          <div className="relative flex justify-center md:justify-end">
+            
+            {/* Icono Flotante Inferior Derecha */}
+            <div className="absolute bottom-10 right-0 md:-right-4 p-4 bg-white dark:bg-slate-800 rounded-full shadow-xl animate-pulse z-20 border border-slate-100 dark:border-slate-700">
+                <Code size={28} className="text-blue-500" />
+            </div>
+
+            {/* Tarjeta Principal (Estilo Polaroid Moderna) */}
+            <div className="bg-white dark:bg-slate-800 p-4 pb-8 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-700 max-w-sm w-full transform rotate-1 hover:rotate-0 transition-transform duration-500">
+              <div className="aspect-[4/5] rounded-[2rem] overflow-hidden bg-slate-200 dark:bg-slate-900 relative group">
+                <img 
+                  src="/FotoGit.jpg" 
+                  alt="Andy Garcia" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                />
+              </div>
+              <div className="text-center mt-6">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Programador</h3>
+                <p className="text-blue-500 font-medium text-sm">Codeando, sin aflojar!</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -142,27 +233,66 @@ const App: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
               <p>
-                ¡Hola! Soy un desarrollador apasionado por la tecnología y la innovación. Me enfoco en el ecosistema de JavaScript, buscando siempre las mejores prácticas.
+                Soy un desarrollador buscando mejor día a día, terminando este 2025 la carrera de Tecnico Universitario en Programacion, buscando mi primer experiencia laboral.
               </p>
               <p>
-                Disfruto resolviendo problemas de lógica y optimizando la experiencia de usuario. Siempre estoy aprendiendo algo nuevo.
+                Me considero atento, responsable y cuento con la capacidad de resolver problemas de desarrollo de software tanto en el frontend como en el backend. 
+              </p>
+              <p>
+                Preparado para crear soluciones eficientes y escalables que brinden una experiencia de usuario excepcional.
               </p>
             </div>
             
-            <div className="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-2xl border border-slate-100 dark:border-slate-700">
+            {/* Columna Skills con Tabs */}
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700">
+              
+              {/* Encabezado con Icono */}
               <h3 className="font-semibold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
                 <Code size={20} className="text-blue-500" />
-                Tech Stack
+                Stack Tecnológico
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {['TypeScript', 'React', 'Node.js', 'Next.js', 'Tailwind', 'Git', 'SQL'].map((tech) => (
-                  <span 
-                    key={tech} 
-                    className="px-4 py-1.5 bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 rounded-lg border border-slate-200 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500 transition-colors cursor-default"
+
+              {/* Botonera (Tabs) */}
+              <div className="flex gap-2 p-1 bg-slate-200 dark:bg-slate-900/50 rounded-lg mb-6 overflow-x-auto">
+                {(['frontend', 'backend', 'tools'] as SkillCategory[]).map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`
+                      flex-1 px-4 py-2 rounded-md text-sm font-semibold capitalize transition-all duration-300
+                      ${activeTab === tab 
+                        ? 'bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm' 
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-300/50 dark:hover:bg-slate-800/50'}
+                    `}
                   >
-                    {tech}
-                  </span>
+                    {tab === 'tools' ? 'Herramientas' : tab}
+                  </button>
                 ))}
+              </div>
+
+              {/* Lista de Skills con Iconos */}
+              <div className="min-h-[120px]">
+                <div className="flex flex-wrap gap-3 animate-fadeIn">
+                  {skillsData[activeTab].map((skill) => (
+                    <div 
+                      key={skill.name} 
+                      className="group flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300 cursor-default"
+                    >
+                      {/* El Icono: Usamos 'style' para ponerle su color oficial */}
+                      <span 
+                        className="text-lg transition-transform group-hover:scale-110" 
+                        style={{ color: skill.color }} // <--- ACÁ ESTÁ LA MAGIA DEL COLOR
+                      >
+                        {skill.icon}
+                      </span>
+                      
+                      {/* El Nombre */}
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -222,9 +352,9 @@ const App: React.FC = () => {
           <div className="inline-block p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full text-blue-600 dark:text-blue-400 mb-6">
             <Mail size={32} />
           </div>
-          <h2 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">¿Hablamos?</h2>
+          <h2 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">Contacto</h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-            Estoy disponible para nuevos desafíos. Si tienes una idea o proyecto, ¡me encantaría escucharla!
+            Estoy disponible para nuevos desafíos ¡Contactame y coordinemos!
           </p>
           
           <a 
