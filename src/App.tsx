@@ -51,6 +51,7 @@ interface Project {
   tags: string[];
   repoLink: string;
   demoLink: string;
+  image: string;
 }
 
 
@@ -58,27 +59,30 @@ interface Project {
 const projectsData: Project[] = [
   {
     id: 1,
-    title: "E-Commerce Dashboard",
-    description: "Panel de administración con gráficos en tiempo real y gestión de inventario.",
-    tags: ["React", "TypeScript", "Tailwind"],
-    repoLink: "#",
-    demoLink: "#"
+    title: "Plataforma de reservas de canchas - API",
+    description: " Aplicación web para reservar canchas deportivas, gestion de usuarios, canchas",
+    tags: ["Node.js", "TypeScript", "SQLite", "Express", "JWT"],
+    repoLink: "https://github.com/AndyGar04/Proyecto-Final-Tup-BackEnd",
+    demoLink: "https://proyecto-final-tup-back-end.vercel.app/",
+    image: "/SportManagerBack.jpg"
   },
   {
     id: 2,
-    title: "Task Manager API",
-    description: "Backend RESTful para gestión de tareas con autenticación JWT.",
-    tags: ["Node.js", "Express", "MongoDB"],
-    repoLink: "#",
-    demoLink: "#"
+    title: "Plataforma de reservas de canchas - Frontend",
+    description: "Interfaz web para la plataforma de reservas de canchas, con autenticación y gestión de reservas.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    repoLink: "https://github.com/AndyGar04/Proyecto-Final-FrontEnd",
+    demoLink: "https://proyecto-final-frontend-one-beta.vercel.app/presentacion",
+    image: "/SportManager.jpg"
   },
   {
     id: 3,
-    title: "Portfolio v1",
-    description: "Mi sitio personal anterior enfocado en performance.",
-    tags: ["HTML/CSS", "JavaScript"],
-    repoLink: "#",
-    demoLink: "#"
+    title: "Sistema de gestion de inventarios - Proyecto FullStack",
+    description: "Aplicación web para gestionar inventarios, con funcionalidades de CRUD y panel de administración.",
+    tags: ["React", "JavaScript", "Express", "Nginx", "PostgreSQL", "Docker"],
+    repoLink: "https://github.com/AndyGar04/ProgramacionIII/tree/main/Proyecto-Final",
+    demoLink: "#",
+    image: "/GestionDeStock.jpg"
   }
 ];
 
@@ -114,7 +118,6 @@ const App: React.FC = () => {
         </h1>
         
         <div className="flex items-center gap-6">
-          {/* Menú Desktop */}
           <ul className="hidden md:flex gap-6 text-slate-600 dark:text-slate-300 font-medium text-sm">
             {['Inicio', 'Sobre mí', 'Proyectos', 'Contacto'].map((item) => (
               <li key={item}>
@@ -128,7 +131,6 @@ const App: React.FC = () => {
             ))}
           </ul>
           
-          {/* Botón Tema */}
           <button 
             onClick={toggleTheme}
             className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 transition-transform hover:scale-110 active:scale-95 ring-1 ring-slate-200 dark:ring-slate-700"
@@ -145,18 +147,14 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300 font-sans text-slate-900 dark:text-slate-100 selection:bg-blue-500/30">
       <Navbar />
 
-      {/* SECCIÓN: INICIO (Rediseñada) */}
       <section id="inicio" className="min-h-screen flex items-center pt-20 pb-10 relative overflow-hidden">
-        {/* Fondos decorativos sutiles (Glow azul) */}
         <div className="absolute top-0 right-0 w-1/2 h-screen bg-blue-500/10 rounded-bl-[100px] -z-10 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full -z-10 blur-3xl"></div>
 
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           
-          {/* COLUMNA IZQUIERDA: Textos */}
           <div className="space-y-6 text-center md:text-left">
             
-            {/* Badge de bienvenida (Azul) */}
             <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold mb-2 border border-blue-200 dark:border-blue-800">
               ¡Bienvenidos a mi Portafolio!
             </div>
@@ -174,7 +172,6 @@ const App: React.FC = () => {
               Programando y experimentando desde Bahía Blanca, Argentina. Especializado en aplicaciones web funcionales y escalables.
             </p>
 
-            {/* Botones */}
             <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
               <a href="#contacto" className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1">
                 Contactame <Send size={18} />
@@ -184,26 +181,22 @@ const App: React.FC = () => {
               </a>
             </div>
 
-            {/* Redes Sociales (Íconos simples) */}
             <div className="flex justify-center md:justify-start gap-6 pt-4">
-              <a href="#" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+              <a href="https://github.com/AndyGar04" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
                 <Github size={28} />
               </a>
-              <a href="#" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
+              <a href="https://www.linkedin.com/in/andy-garcia-programador/" className="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110">
                 <Linkedin size={28} />
               </a>
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: La Tarjeta con Foto */}
           <div className="relative flex justify-center md:justify-end">
             
-            {/* Icono Flotante Inferior Derecha */}
             <div className="absolute bottom-10 right-0 md:-right-4 p-4 bg-white dark:bg-slate-800 rounded-full shadow-xl animate-pulse z-20 border border-slate-100 dark:border-slate-700">
                 <Code size={28} className="text-blue-500" />
             </div>
 
-            {/* Tarjeta Principal (Estilo Polaroid Moderna) */}
             <div className="bg-white dark:bg-slate-800 p-4 pb-8 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-700 max-w-sm w-full transform rotate-1 hover:rotate-0 transition-transform duration-500">
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden bg-slate-200 dark:bg-slate-900 relative group">
                 <img 
@@ -222,7 +215,6 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECCIÓN: SOBRE MÍ */}
       <section id="sobre-mí" className="py-24 bg-white dark:bg-slate-900/50 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-12">
@@ -243,16 +235,13 @@ const App: React.FC = () => {
               </p>
             </div>
             
-            {/* Columna Skills con Tabs */}
             <div className="bg-slate-50 dark:bg-slate-800/50 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700">
               
-              {/* Encabezado con Icono */}
               <h3 className="font-semibold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
                 <Code size={20} className="text-blue-500" />
                 Stack Tecnológico
               </h3>
 
-              {/* Botonera (Tabs) */}
               <div className="flex gap-2 p-1 bg-slate-200 dark:bg-slate-900/50 rounded-lg mb-6 overflow-x-auto">
                 {(['frontend', 'backend', 'tools'] as SkillCategory[]).map((tab) => (
                   <button
@@ -270,7 +259,6 @@ const App: React.FC = () => {
                 ))}
               </div>
 
-              {/* Lista de Skills con Iconos */}
               <div className="min-h-[120px]">
                 <div className="flex flex-wrap gap-3 animate-fadeIn">
                   {skillsData[activeTab].map((skill) => (
@@ -278,7 +266,6 @@ const App: React.FC = () => {
                       key={skill.name} 
                       className="group flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300 cursor-default"
                     >
-                      {/* El Icono: Usamos 'style' para ponerle su color oficial */}
                       <span 
                         className="text-lg transition-transform group-hover:scale-110" 
                         style={{ color: skill.color }} // <--- ACÁ ESTÁ LA MAGIA DEL COLOR
@@ -286,7 +273,6 @@ const App: React.FC = () => {
                         {skill.icon}
                       </span>
                       
-                      {/* El Nombre */}
                       <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                         {skill.name}
                       </span>
@@ -299,7 +285,6 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECCIÓN: PROYECTOS */}
       <section id="proyectos" className="py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-12">
@@ -309,12 +294,15 @@ const App: React.FC = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projectsData.map((project) => (
-              <article key={project.id} className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col h-full">
-                <div className="h-48 bg-slate-100 dark:bg-slate-800 relative overflow-hidden flex items-center justify-center border-b border-slate-100 dark:border-slate-800">
+              <article key={project.id} className="...">
+                <div className="h-48 bg-slate-100 dark:bg-slate-800 relative overflow-hidden border-b border-slate-100 dark:border-slate-800">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                  />
                   <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-300" />
-                  <span className="text-slate-400 dark:text-slate-600 font-medium">Imagen del Proyecto</span>
                 </div>
-                
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {project.title}
@@ -346,7 +334,6 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECCIÓN: CONTACTO */}
       <section id="contacto" className="py-24 bg-white dark:bg-slate-900/50 transition-colors duration-300">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <div className="inline-block p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full text-blue-600 dark:text-blue-400 mb-6">
@@ -366,20 +353,19 @@ const App: React.FC = () => {
           </a>
 
           <div className="flex justify-center gap-8 mt-16">
-            <a href="#" className="text-slate-400 hover:text-[#0077b5] transition-colors transform hover:scale-110">
+            <a href="https://www.linkedin.com/in/andy-garcia-programador/" className="text-slate-400 hover:text-[#0077b5] transition-colors transform hover:scale-110">
               <Linkedin size={28} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://github.com/AndyGar04" className="text-slate-400 hover:text-black dark:hover:text-white transition-colors transform hover:scale-110">
               <Github size={28} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-8 text-center border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
         <p className="text-slate-500 text-sm">
-          © 2025. Hecho con React, TypeScript & Tailwind.
+          © 2026, Andy Garcia. Tecnico en Programacion. Todos los derechos reservados.
         </p>
       </footer>
     </div>
